@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController, reorderArray } from 'ionic-angular';
+import { NavController, AlertController, reorderArray, ToastController } from 'ionic-angular';
 import { TareaProvider } from '../../providers/tarea/tarea';
 
 @Component({
@@ -14,7 +14,8 @@ export class HomePage {
   constructor(
     public navCtrl: NavController,
     private alerta: AlertController,
-    private servicioTareas: TareaProvider
+    private servicioTareas: TareaProvider,
+    private toast: ToastController
   ) {
     this.tareas = servicioTareas.obtenerTareas();
   }
@@ -36,6 +37,11 @@ export class HomePage {
             console.log(datos);
             // this.tareas.push(datos.textoTarea);
             this.servicioTareas.agregarTarea(datos.textoTarea);
+            let toast = this.toast.create({
+              message: "La tarea fue agregada",
+              duration: 2000
+            });
+            toast.present();
           }
         }
       ]
