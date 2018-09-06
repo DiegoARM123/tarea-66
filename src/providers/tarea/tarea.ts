@@ -32,8 +32,8 @@ export class TareaProvider {
     this.tareas.splice(indice,1);
   }
 
-  editarTarea(){
-
+  editarTarea(tarea, indice){
+    this.tareas[indice] = tarea;
   }
 
 }

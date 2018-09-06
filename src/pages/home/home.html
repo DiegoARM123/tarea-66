@@ -24,11 +24,15 @@
   (ionItemReorder)="ordenarLista($event)">
     <ion-item-sliding 
       *ngFor="let tarea of tareas;let tareaIndex = index">
-      <ion-item-options side="left">
+      
+      <ion-item-options side="left" 
+      (click)="editarTarea(tareaIndex)"
+      >
         <button ion-button>
           <ion-icon name="create"></ion-icon>
         </button>
       </ion-item-options>
+
       <ion-item>{{tarea}}</ion-item>
       <ion-item-options side="right">
         <button color="danger" ion-button 

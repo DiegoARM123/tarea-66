@@ -12,21 +12,21 @@ export class HomePage {
   ordenHabilitado = false;
 
   constructor(
-    public navCtrl: NavController, 
-    private alerta:AlertController,
+    public navCtrl: NavController,
+    private alerta: AlertController,
     private servicioTareas: TareaProvider
   ) {
     this.tareas = servicioTareas.obtenerTareas();
   }
 
-  agregarTarea(){
+  agregarTarea() {
     let alert = this.alerta.create({
       title: "Agregar tarea",
       inputs: [{
         name: "textoTarea",
         type: "text"
       }],
-      buttons : [
+      buttons: [
         {
           text: "Cancelar"
         },
@@ -43,14 +43,35 @@ export class HomePage {
     alert.present();
 
   }
-  toogleOrdenHabilitado(){
+  toogleOrdenHabilitado() {
     this.ordenHabilitado = !this.ordenHabilitado;
   }
-  ordenarLista(evento){
+  ordenarLista(evento) {
     console.log(evento);
-    reorderArray(this.tareas,evento);
+    reorderArray(this.tareas, evento);
   }
-  archivarTarea(tareaIndex){
+  archivarTarea(tareaIndex) {
     this.servicioTareas.archivarTarea(tareaIndex);
+  }
+
+  editarTarea(tareaIndex) {
+    let alert = this.alerta.create({
+      title: "Editar tarea",
+      inputs: [{
+        name: "tareaEditada",
+        type: "text",
+        value: this.tareas[tareaIndex]
+      }],
+      buttons: [{
+        text: "Cancelar"
+      },
+      {
+        text: "Listo",
+        handler: (datos) => {
+          this.servicioTareas.editarTarea(datos.tareaEditada, tareaIndex );
+        }
+      }]
+    });
+    alert.present();
   }
 }
