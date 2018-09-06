@@ -7,7 +7,10 @@ import { TareaProvider } from '../../providers/tarea/tarea';
   templateUrl: 'home.html'
 })
 export class HomePage {
+
   tareas = [];
+  ordenHabilitado = false;
+
   constructor(
     public navCtrl: NavController, 
     private alerta:AlertController,
@@ -39,5 +42,8 @@ export class HomePage {
     });
     alert.present();
 
+  }
+  toogleOrdenHabilitado(){
+    this.ordenHabilitado = !this.ordenHabilitado;
   }
 }
