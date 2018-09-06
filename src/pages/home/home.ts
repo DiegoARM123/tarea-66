@@ -1,14 +1,43 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
+import { TareaProvider } from '../../providers/tarea/tarea';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-
-  constructor(public navCtrl: NavController) {
-
+  tareas = [];
+  constructor(
+    public navCtrl: NavController, 
+    private alerta:AlertController,
+    private servicioTareas: TareaProvider
+  ) {
+    this.tareas = servicioTareas.obtenerTareas();
   }
 
+  agregarTarea(){
+    let alert = this.alerta.create({
+      title: "Agregar tarea",
+      inputs: [{
+        name: "textoTarea",
+        type: "text"
+      }],
+      buttons : [
+        {
+          text: "Cancelar"
+        },
+        {
+          text: "Agregar",
+          handler: (datos) => {
+            console.log(datos);
+            // this.tareas.push(datos.textoTarea);
+            this.servicioTareas.agregarTarea(datos.textoTarea);
+          }
+        }
+      ]
+    });
+    alert.present();
+
+  }
 }
