@@ -10,6 +10,7 @@ import { Injectable } from '@angular/core';
 export class TareaProvider {
 
   tareas = [];
+  tareasArchivadas = [];
   constructor() {
     console.log('Hello TareaProvider Provider');
   }
@@ -18,12 +19,17 @@ export class TareaProvider {
     return this.tareas;
   }
 
+  obtenerTareasArchivadas(){
+    return this.tareasArchivadas;
+  }
   agregarTarea(tarea){
     this.tareas.push(tarea);
   }
 
-  archivarTarea(){
-
+  archivarTarea(indice){
+    this.tareasArchivadas.push(this.tareas[indice]);
+    console.log(this.tareasArchivadas);
+    this.tareas.splice(indice,1);
   }
 
   editarTarea(){

@@ -31,10 +31,17 @@
       </ion-item-options>
       <ion-item>{{tarea}}</ion-item>
       <ion-item-options side="right">
-        <button color="danger" ion-button>
+        <button color="danger" ion-button 
+        (click)="archivarTarea(tareaIndex)">
           <ion-icon name="trash"></ion-icon>
         </button>
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
+  <ion-fab bottom right>
+    <button ion-fab 
+    [navPush]="'TareasArchivadasPage'">
+      <ion-icon name="archive"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>

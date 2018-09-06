@@ -50,4 +50,7 @@ export class HomePage {
     console.log(evento);
     reorderArray(this.tareas,evento);
   }
+  archivarTarea(tareaIndex){
+    this.servicioTareas.archivarTarea(tareaIndex);
+  }
 }
